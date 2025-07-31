@@ -5,7 +5,7 @@ WebProber is an initial implementation and research framework for AI-driven web 
 
 2. **Interaction simulation:** An AI agent controls the browser using visual language models for intelligent decision-making and web navigation 
 
-3. **Bug report generation:** We provide a code snippet for generating comprehensive bug reports, with a engineered prompt in `generate_bug_report.py`.
+3. **Bug report generation:** We provide a code snippet for generating comprehensive bug reports, with a engineered prompt in `analyze_agent_run.py`.
 
 ## Installation
 
