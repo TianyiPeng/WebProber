@@ -1,6 +1,6 @@
 # WebProber: AI Agent for web testing
 
-WebProber is an initial implementation and research framework for AI-driven web testing. This executable framework provides template-based prompts and a foundation for building intelligent web testing systems that can automatically discover usability issues and bugs. WebProber operates through a three-stage pipeline that you can customize: 
+WebProber is an initial implementation and research framework for AI-driven web testing based on `browser-use (https://github.com/browser-use/browser-use)`. This executable framework provides template-based prompts and a foundation for building intelligent web testing systems that can automatically discover usability issues and bugs. WebProber operates through a three-stage pipeline that you can customize: 
 1. **Task prompt generation:** we provide a template in `task.txt` that you can customize for your target website URL and type. 
 
 2. **Interaction simulation:** An AI agent controls the browser using visual language models for intelligent decision-making and web navigation 
@@ -8,8 +8,6 @@ WebProber is an initial implementation and research framework for AI-driven web 
 3. **Bug report generation:** We provide a code snippet for generating comprehensive bug reports, with a engineered prompt in `generate_bug_report.py`.
 
 ## Installation
-
-<!-- ### Using uv (Recommended) -->
 
 ```bash
 # Install uv if you haven't already
@@ -22,21 +20,6 @@ cd WebProber
 # Install dependencies
 uv sync
 ```
-
-<!-- ### Using pip
-
-```bash
-# Clone the repository
-git clone https://github.com/TianyiPeng/WebProber.git
-cd WebProber
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -e .
-``` -->
 
 ### Environment Setup
 
@@ -57,22 +40,25 @@ OPENAI_API_KEY=your_openai_key_here
    - Set browser preferences
    - Configure authentication if needed
 
-2. **Create a tasks file** (e.g., `tasks.txt`) with tasks in the format:
+2. **Create a tasks file** (e.g., `task.txt`) with tasks in the format:
    ```
    task1: Navigate to Google and search for "AI news"
    task2: Go to GitHub and find trending Python repositories
    ```
 
 3. **Run your first automation**:
-   ```bash
-   # With uv
-   uv run python main.py
-
-   <!-- # With regular Python (after activating venv)
-   python main.py -->
-   ```
+```bash
+uv run main.py
+```
 
 The agent will open a browser, execute your tasks with AI-powered decision making, and provide detailed logs of its actions in `agent_logs/` and `agent_screenshots/`.
+
+4. **Generate bug report**:
+```bash
+uv run generate_bug_report.py
+```
+
+This will generate a bug report in the `bug_reports/` directory.
 
 ## Detailed Usage
 
@@ -111,7 +97,7 @@ agent:
 
 ### 2. Task Definition
 
-Tasks are defined in a text file (default: `tasks.txt`) with the format:
+Tasks are defined in a text file (default: `task.txt`) with the format:
 ```
 task_name: Task description
 ```
@@ -143,7 +129,7 @@ uv run main.py
 
 The script will:
 - Load configuration from `configs/config.yaml`
-- Either use saved cookies or perform programmatic login
+- Potnetially load saved cookies
 - Read tasks from the configured task file
 - Execute each task using the AI agent with your configured settings
 - Generate logs in the `agent_logs/` directory
